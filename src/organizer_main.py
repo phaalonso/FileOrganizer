@@ -2,6 +2,10 @@
 import os
 import sys
 
+ignore = [
+    'iso'
+]
+
 def move_files(file):
     # File path
     path = os.path.realpath(sys.argv[1])
@@ -11,10 +15,25 @@ def move_files(file):
     # If its a dir
     if os.path.isdir(file_path):
         return
+    
+    file_size = os.stat(file_path).st_size
+    # Get kb
+    file_size /= 1000 
+    # Get mb
+    file_size /= 1000
+
 
     file_type = file.split('.')[-1]
     print(f'File name: {file}')
+    print(f'File size: {file_size}')
     print(f'Type of the file: {file_type}')
+
+
+    if file_size > 1000:
+        return
+
+    if file_type in ignore:
+        return
 
     print(f'File path: {file_path}')
 
