@@ -4,7 +4,9 @@ import sys
 
 def move_files(file):
     # File path
-    file_path = os.path.join(sys.argv[1], file)
+    path = os.path.realpath(sys.argv[1])
+    
+    file_path = os.path.join(path, file)
     
     # If its a dir
     if os.path.isdir(file_path):
@@ -17,7 +19,7 @@ def move_files(file):
     print(f'File path: {file_path}')
 
     # Path were the file will be moved
-    dir_path = os.path.join(sys.argv[1], file_type)
+    dir_path = os.path.join(path, file_type)
     print(f'Where file will be moved: {dir_path}')
 
     # If the dir doesn't exist it will create one with file_type as a name
@@ -27,8 +29,8 @@ def move_files(file):
     os.rename(file_path, os.path.join(dir_path, file))
 
 if __name__ == '__main__':
-    # args = sys.argv[1:]
-    # print(args)
+    args = sys.argv[1:]
+    print(args)
 
     files_list: list = os.listdir(sys.argv[1])
     if files_list.__len__() == 0:
