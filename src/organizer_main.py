@@ -6,6 +6,15 @@ ignore = [
     'iso'
 ]
 
+custom_name = {
+    'zip': 'Compactados',
+    'rar': 'Compactados',
+    'xz': 'Compactados',
+    'pdf': 'Documentos',
+    'odt': 'Documentos',
+    'exe': 'Executaveis'
+}
+
 def move_files(file):
     # File path
     path = os.path.realpath(sys.argv[1])
@@ -24,10 +33,13 @@ def move_files(file):
 
 
     file_type = file.split('.')[-1]
+    print('------------------------------')
     print(f'File name: {file}')
     print(f'File size: {file_size}')
     print(f'Type of the file: {file_type}')
 
+    # Get custom name, otherwise dir_name will have file_type
+    dir_name = custom_name.get(file_type, file_type)
 
     if file_size > 1000:
         return
@@ -38,7 +50,7 @@ def move_files(file):
     print(f'File path: {file_path}')
 
     # Path were the file will be moved
-    dir_path = os.path.join(path, file_type)
+    dir_path = os.path.join(path, dir_name)
     print(f'Where file will be moved: {dir_path}')
 
     # If the dir doesn't exist it will create one with file_type as a name
