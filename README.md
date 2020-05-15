@@ -26,9 +26,9 @@ To organize the Downloads directory in linux
 - [X] Ignore files with size above 1 GB
 
 - [ ] Process args 
-  - [ ] Create a arg parser
+  - [X] Create a arg parser
 
-  - [ ] Receive the `-v` or `--verbose` to activate the log in command line
+  - [X] Receive the `-v` or `--verbose` to activate the log in command line
 
   - [ ] Receive the `-m <size>` or `--minSize <size>` arg to especify the minimun size of the file that will be moved
 
