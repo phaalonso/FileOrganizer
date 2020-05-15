@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
+import argparse
 
 ignore = [
     'iso'
@@ -33,10 +34,6 @@ def move_files(file):
 
 
     file_type = file.split('.')[-1]
-    print('------------------------------')
-    print(f'File name: {file}')
-    print(f'File size: {file_size}')
-    print(f'Type of the file: {file_type}')
 
     # Get custom name, otherwise dir_name will have file_type
     dir_name = custom_name.get(file_type, file_type)
@@ -47,11 +44,17 @@ def move_files(file):
     if file_type in ignore:
         return
 
-    print(f'File path: {file_path}')
 
     # Path were the file will be moved
     dir_path = os.path.join(path, dir_name)
-    print(f'Where file will be moved: {dir_path}')
+
+    if args.verbose:
+        print('------------------------------')
+        print(f'File name: {file}')
+        print(f'File path: {file_path}')
+        print(f'File size: {file_size}')
+        print(f'Type of the file: {file_type}')
+        print(f'Where file will be moved: {dir_path}')
 
     # If the dir doesn't exist it will create one with file_type as a name
     if not os.path.isdir(dir_path):
@@ -60,14 +63,19 @@ def move_files(file):
     os.rename(file_path, os.path.join(dir_path, file))
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
+    parser = argparse.ArgumentParser('File Organizer', 'Organize your files')
+    parser.add_argument('path', help='The path that will be organized', type=str)
+    parser.add_argument('-v','--verbose', help='Activate the cli log', action='store_true')
+
+    args = parser.parse_args()
     print(args)
 
-    files_list: list = os.listdir(sys.argv[1])
+    files_list: list = os.listdir(args.path)
     if files_list.__len__() == 0:
-        print(f'The path {sys.argv[1]} is empty!')
+        print(f'The path {args.path} is empty!')
     else:
-        print(files_list)
+        if args.verbose:
+            print(files_list)
 
         for file in files_list:
             move_files(file)
