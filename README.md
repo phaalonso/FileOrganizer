@@ -30,9 +30,9 @@ To organize the Downloads directory in linux
 
   - [X] Receive the `-v` or `--verbose` to activate the log in command line
 
-  - [ ] Receive the `-m <size>` or `--minSize <size>` arg to especify the minimun size of the file that will be moved
+  - [X] Receive the `-m <size>` or `--minSize <size>` arg to especify the minimun size of the file that will be moved
 
-  - [ ] Receive the `-M <size>` or `--maxSize <size>` arg to especify the max size of the file that will be moved 
+  - [X] Receive the `-M <size>` or `--maxSize <size>` arg to especify the max size of the file that will be moved 
 
   - [ ] Receive the `-i <type>` or `--ignore <type>` to ignore a determined file type
 
