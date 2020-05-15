@@ -9,7 +9,14 @@ You can simply call `python3 src/organizer.py <path_to_dir>` passing the path to
 
 In linux you also can give the file permission to execute with `chmod +x src/organizer.py` and run the program with `.src/organizer.py <path_to_dir>`.
 
-### TO DO
+## Examples
+Here some examples of how to use.
+
+To organize the Downloads directory in linux
+`python3 src/organizer.py ~/Downloads`
+
+
+## TO DO
 - [X] Sort files in a given path
 
 - [X] Receives the dir path as a arg
