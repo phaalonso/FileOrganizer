@@ -92,7 +92,7 @@ def move_files(file, min_size, max_size):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('File Organizer', 'Organize your files')
-    parser.add_argument('path', help='The path that will be organized', type=str)
+    parser.add_argument('path', help='The path to the dir that will be organized', type=str)
     parser.add_argument('-v','--verbose', help='Activate the cli log', action='store_true')
     parser.add_argument('-m', '--minSize', help='The minimun size of the file that will be organized', action='store', default=0)
     parser.add_argument('-M', '--maxSize', help='The max size of the file that will be organized', action='store', default=1000)
