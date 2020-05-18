@@ -85,25 +85,28 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--minSize', help='The minimun size of the file that will be organized', action='store', default=0)
     parser.add_argument('-M', '--maxSize', help='The max size of the file that will be organized', action='store', default=1000)
     parser.add_argument('-i', '--ignore', help='Ignore some file type', action='store', type=str)
+    parser.add_argument('-I', '--ignoreDefaults', help='Ignore the defaults determined by a file in the project', action='store_true')
 
-    ignore = []
-    custom_dir = {}
-
-    with open('defaults.json', 'r') as file:
-        data = json.load(file)
-        ignore = data["ignore"]
-        custom_dir = data["customDirs"]
-
-    print(ignore)
-    print(custom_dir)
 
     args = parser.parse_args()
     print(args)
 
+    ignore = []
+    custom_dir = {}
+
+    if not args.ignoreDefaults:
+        with open('defaults.json', 'r') as file:
+            data = json.load(file)
+            ignore = data["ignore"]
+            custom_dir = data["customDirs"]
+
+    # print(ignore)
+    # print(custom_dir)
+    
     # Process the sizes of the files
     if args.ignore:
         ignore.append(args.ignore)
-    print(ignore)
+    # print(ignore)
 
     min_size, max_size = process_size(args.minSize, args.maxSize)
 

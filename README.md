@@ -36,6 +36,6 @@ To organize the Downloads directory in linux
 
   - [X] Receive the `-i <type>` or `--ignore <type>` to ignore a determined file type
 
-  - [ ] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
+  - [X] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
 
   - [ ] Receive the `-c <type> <dir_name>` or `--custom <type> <dir_name>` to temporaly sorty the determined file type in a custom dir
