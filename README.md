@@ -34,7 +34,7 @@ To organize the Downloads directory in linux
 
   - [X] Receive the `-M <size>` or `--maxSize <size>` arg to especify the max size of the file that will be moved 
 
-  - [ ] Receive the `-i <type>` or `--ignore <type>` to ignore a determined file type
+  - [X] Receive the `-i <type>` or `--ignore <type>` to ignore a determined file type
 
   - [ ] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
 
