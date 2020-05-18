@@ -2,19 +2,7 @@
 import os
 import sys
 import argparse
-
-ignore = [
-    'iso'
-]
-
-custom_name = {
-    'zip': 'Compactados',
-    'rar': 'Compactados',
-    'xz': 'Compactados',
-    'pdf': 'Documentos',
-    'odt': 'Documentos',
-    'exe': 'Executaveis'
-}
+import json
 
 def parse_size(size):
     if size.lower().endswith('g'):
@@ -47,7 +35,7 @@ def move_files(file, min_size, max_size):
     '''
 
     # File path
-    path = os.path.realpath(sys.argv[1])
+    path = os.path.realpath(args.path)
     
     file_path = os.path.join(path, file)
     
@@ -64,7 +52,7 @@ def move_files(file, min_size, max_size):
     file_type = file.split('.')[-1]
 
     # Get custom name, otherwise dir_name will have file_type
-    dir_name = custom_name.get(file_type, file_type)
+    dir_name = custom_dir.get(file_type, file_type)
 
     if max_size > file_size < min_size:
         return
@@ -96,11 +84,26 @@ if __name__ == '__main__':
     parser.add_argument('-v','--verbose', help='Activate the cli log', action='store_true')
     parser.add_argument('-m', '--minSize', help='The minimun size of the file that will be organized', action='store', default=0)
     parser.add_argument('-M', '--maxSize', help='The max size of the file that will be organized', action='store', default=1000)
+    parser.add_argument('-i', '--ignore', help='Ignore some file type', action='store', type=str)
+
+    ignore = []
+    custom_dir = {}
+
+    with open('defaults.json', 'r') as file:
+        data = json.load(file)
+        ignore = data["ignore"]
+        custom_dir = data["customDirs"]
+
+    print(ignore)
+    print(custom_dir)
 
     args = parser.parse_args()
     print(args)
 
     # Process the sizes of the files
+    if args.ignore:
+        ignore.append(args.ignore)
+    print(ignore)
 
     min_size, max_size = process_size(args.minSize, args.maxSize)
 

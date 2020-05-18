@@ -1,0 +1,13 @@
+{
+    "ignore": [
+        "iso"
+    ],
+    "customDirs": {
+        "zip": "Compactados",
+        "rar": "Compactados",
+        "xz": "Compactados",
+        "pdf": "Documentos",
+        "odt": "Documentos",
+        "exe": "Executaveis"
+    }
+}
