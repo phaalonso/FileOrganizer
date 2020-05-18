@@ -25,7 +25,7 @@ To organize the Downloads directory in linux
 
 - [X] Ignore files with size above 1 GB
 
-- [ ] Process args 
+- [X] Process args 
   - [X] Create a arg parser
 
   - [X] Receive the `-v` or `--verbose` to activate the log in command line
@@ -38,4 +38,4 @@ To organize the Downloads directory in linux
 
   - [X] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
 
-  - [ ] Receive the `-c <type> <dir_name>` or `--custom <type> <dir_name>` to temporaly sorty the determined file type in a custom dir
+  - [X] Receive the `-c <type> <dir_name>` or `--custom <type> <dir_name>` to temporaly sorty the determined file type in a custom dir

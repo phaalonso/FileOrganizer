@@ -86,7 +86,7 @@ if __name__ == '__main__':
     parser.add_argument('-M', '--maxSize', help='The max size of the file that will be organized', action='store', default=1000)
     parser.add_argument('-i', '--ignore', help='Ignore some file type', action='store', type=str)
     parser.add_argument('-I', '--ignoreDefaults', help='Ignore the defaults determined by a file in the project', action='store_true')
-
+    parser.add_argument('-c', '--custom', help='Custom name to store a file type', action='store', nargs=2)
 
     args = parser.parse_args()
     print(args)
@@ -100,8 +100,13 @@ if __name__ == '__main__':
             ignore = data["ignore"]
             custom_dir = data["customDirs"]
 
-    # print(ignore)
-    # print(custom_dir)
+    if isinstance(args.custom, list):
+        file_type = args.custom[0]
+        custom_name = args.custom[1]
+        # print(f'File type: {file_type}, custom name: {custom_name}')
+        custom_dir[file_type] = custom_name 
+
+    print(custom_dir)
     
     # Process the sizes of the files
     if args.ignore:

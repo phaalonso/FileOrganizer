@@ -8,6 +8,7 @@
         "xz": "Compactados",
         "pdf": "Documentos",
         "odt": "Documentos",
-        "exe": "Executaveis"
+        "exe": "Executaveis",
+        "txt": "Documentos"
     }
 }
