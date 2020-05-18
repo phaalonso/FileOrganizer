@@ -39,3 +39,10 @@ To organize the Downloads directory in linux
   - [X] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
 
   - [X] Receive the `-c <type> <dir_name>` or `--custom <type> <dir_name>` to temporaly sorty the determined file type in a custom dir
+ 
+- [ ] REGEX
+  - [ ] Receive the `-f <regex>` or `--file <regex>` to process only the files that respect the regex 
+  
+  - [ ] Store regex as a default custom, so the files that correspond to it will be moved to a custom file
+    * So file like 'HomeWork.txt' can be parsed to the custom dir '~/Documents/University/HomeWork/'
+
