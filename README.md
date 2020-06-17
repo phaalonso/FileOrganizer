@@ -10,12 +10,22 @@ In linux:
  - you can give the file permission to execute with `chmod +x src/organizer.py` and run the program with `.src/organizer.py <path_to_dir>`.
  - or add a symbolic link using `sudo ln -s FileOrganizer/src/organizer.py /usr/local/bin/organizer` and call the program with `organizer <path_to_dir>`
 
+## Configs
+The default config file is in `src/defaults.json`
 
-## Examples
-Here some examples of how to use.
-
-To organize the Downloads directory in linux
-`python3 src/organizer.py ~/Downloads`
+If you want to make some modifications will have to follow this format: 
+```json
+{
+    "ignore": [
+        "file_to_ignore",
+        "iso"
+    ],
+    "customDirs": {
+        "zip": "Compactados",
+        "file_extension": "custom_dir_name"
+    }
+}
+```
 
 
 ## TO DO
