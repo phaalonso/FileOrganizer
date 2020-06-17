@@ -42,7 +42,7 @@ def move_files(path, file, min_size, max_size):
     # Path were the file will be moved
     dir_path = os.path.join(path, dir_name)
 
-    if args.verbose:
+    if args.debug:
         print('------------------------------')
         print(f'File name: {file}')
         print(f'File path: {file_path}')
@@ -55,11 +55,14 @@ def move_files(path, file, min_size, max_size):
         os.mkdir(dir_path)
 
     os.rename(file_path, os.path.join(dir_path, file))
+    if args.verbose or args.debug:
+        print(f'Moving file ${file} to ${dir_path}')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('File Organizer', 'Organize your files')
     parser.add_argument('path', help='The path to the dir that will be organized', type=str)
     parser.add_argument('-v','--verbose', help='Activate the cli log', action='store_true')
+    parser.add_argument('-d','--debug', help='Debug cli log', action='store_true')
     parser.add_argument('-m', '--minSize', help='The minimun size of the file that will be organized', action='store', default=0)
     parser.add_argument('-M', '--maxSize', help='The max size of the file that will be organized', action='store', default=1000)
     parser.add_argument('-i', '--ignore', help='Ignore some file type', action='store', type=str)
@@ -68,7 +71,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     
-    if args.verbose:
+    if args.debug:
         print(args)
 
     ignore = []
@@ -89,7 +92,7 @@ if __name__ == '__main__':
         # print(f'File type: {file_type}, custom name: {custom_name}')
         custom_dir[file_type] = custom_name 
 
-    if args.verbose:
+    if args.debug:
         print(f'Custom dir: ${custom_dir}')
     
     # Process the sizes of the files
@@ -100,7 +103,7 @@ if __name__ == '__main__':
     min_size = parse_size(args.minSize) if isinstance(args.minSize, str) else args.minSize
     max_size = parse_size(args.maxSize) if isinstance(args.maxSize, str) else args.maxSize
 
-    if args.verbose:
+    if args.debug:
         print(f'Minimun size: ${min_size}\nMaximun size: ${max_size}')
 
     try: 
@@ -114,7 +117,7 @@ if __name__ == '__main__':
     if files_list.__len__() == 0:
         print(f'The path {args.path} is empty!')
     else:
-        if args.verbose:
+        if args.debug:
             print(files_list)
 
         for file in files_list:
