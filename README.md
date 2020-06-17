@@ -3,11 +3,13 @@
 This sricpt can be utilised to organize files by the file extensio.
 
 ## How to use
-There is two ways to use it.
 
-You can simply call `python3 src/organizer.py <path_to_dir>` passing the path to the dir that you want to organize! :D
+You can simply call `python3 src/organizer.py <path_to_dir>` passing the path to the dir that you want to organize! :D (this works on all operating systems)
 
-In linux you also can give the file permission to execute with `chmod +x src/organizer.py` and run the program with `.src/organizer.py <path_to_dir>`.
+In linux:
+ - you can give the file permission to execute with `chmod +x src/organizer.py` and run the program with `.src/organizer.py <path_to_dir>`.
+ - or add a symbolic link using `sudo ln -s FileOrganizer/src/organizer.py /usr/local/bin/organizer` and call the program with `organizer <path_to_dir>`
+
 
 ## Examples
 Here some examples of how to use.

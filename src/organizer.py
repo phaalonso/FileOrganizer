@@ -74,10 +74,11 @@ if __name__ == '__main__':
     ignore = []
     custom_dir = {}
 
-    # print(os.path.dirname(__file__))
+    # Get the real path to the dir, it works with symbolic links
+    realPath = os.path.dirname(os.path.realpath(__file__))
 
     if not args.ignoreDefaults:
-        with open(os.path.join(os.path.dirname(__file__), 'defaults.json'), 'r') as file:
+        with open(os.path.join(realPath, 'defaults.json'), 'r') as file:
             data = json.load(file)
             ignore = data["ignore"]
             custom_dir = data["customDirs"]
