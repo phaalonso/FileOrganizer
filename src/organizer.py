@@ -5,6 +5,9 @@ import argparse
 import json
 
 def parse_size(size) -> int:
+    '''
+        Parse the size args that will be received as args
+    '''
     if size.lower().endswith('g'):
         parsed = int(size.lower().split('g')[0]) * 1000
     elif size.lower().endswith('m'):
@@ -70,7 +73,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--custom', help='Custom name to store a file type', action='store', nargs=2)
 
     args = parser.parse_args()
-    
+
     if args.debug:
         print(args)
 
@@ -86,6 +89,7 @@ if __name__ == '__main__':
             ignore = data["ignore"]
             custom_dir = data["customDirs"]
 
+    # When received custom args there will be a list isinstance in args.custom var
     if isinstance(args.custom, list):
         file_type = args.custom[0]
         custom_name = args.custom[1]
@@ -122,3 +126,5 @@ if __name__ == '__main__':
 
         for file in files_list:
             move_files(pathToDir, file, min_size, max_size)
+
+
