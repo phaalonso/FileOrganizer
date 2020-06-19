@@ -16,7 +16,35 @@ def parse_size(size) -> int:
         parsed = int(size)
     return parsed
 
-def move_files(path, file, min_size, max_size):
+def convertByteToMb(size: int):
+    size /= 1000 # Get kb 
+    size /= 1000 # Get mb
+    return size
+
+def move_by_name(path: str, file_name: str, custom_dir: dict):
+    '''
+        This function will move the file by it's name to a custom dir.
+    '''
+    file_path = os.path.join(path, file_name)
+    
+    if os.path.isdir(file_path):
+        return
+    
+    # For key in dict verify if it's in a file name
+    for key in custom_dir.keys():
+        print(key, file_name)
+        if file_name.startswith(key) or file_name.endswith(key):
+            dir_path = os.path.join(path, custom_dir[key])
+            # If the dir_path is not a dir then create it
+            if not os.path.isdir(file_path):
+                os.mkdir(dir_path)
+            # Move the file to the custom dir
+            os.rename(file_path, os.path.join(dir_path, file_name))
+            return True
+    
+    return False
+
+def move_files(path: str, file, min_size, max_size):
     ''' 
         This function will move the file if its size is above the minimun and below the maximun size
     '''
@@ -27,11 +55,7 @@ def move_files(path, file, min_size, max_size):
     if os.path.isdir(file_path):
         return
     
-    file_size = os.stat(file_path).st_size
-    # Get kb
-    file_size /= 1000 
-    # Get mb
-    file_size /= 1000
+    file_size = convertByteToMb(os.stat(file_path).st_size)
 
     file_type = file.split('.')[-1]
 
@@ -40,7 +64,7 @@ def move_files(path, file, min_size, max_size):
         return
 
     # Get custom name, otherwise dir_name will have file_type
-    dir_name = custom_dir.get(file_type, file_type)
+    dir_name = custom_dir_extendion.get(file_type, file_type)
 
     # Path were the file will be moved
     dir_path = os.path.join(path, dir_name)
@@ -78,26 +102,28 @@ if __name__ == '__main__':
         print(args)
 
     ignore = []
-    custom_dir = {}
+    custom_dir_extendion = {}
 
     # Get the real path to the dir, it works with symbolic links
     realPath = os.path.dirname(os.path.realpath(__file__))
 
     if not args.ignoreDefaults:
+        # Open the config file and save the options
         with open(os.path.join(realPath, 'defaults.json'), 'r') as file:
             data = json.load(file)
-            ignore = data["ignore"]
-            custom_dir = data["customDirs"]
+            ignore = data['extension']["ignore"]
+            custom_dir_extendion = data['extension']["customDirs"]
+            custom_dir_name = data['name']['customDirs']
 
     # When received custom args there will be a list isinstance in args.custom var
     if isinstance(args.custom, list):
         file_type = args.custom[0]
         custom_name = args.custom[1]
         # print(f'File type: {file_type}, custom name: {custom_name}')
-        custom_dir[file_type] = custom_name 
+        custom_dir_extendion[file_type] = custom_name 
 
     if args.debug:
-        print(f'Custom dir: ${custom_dir}')
+        print(f'Custom dir: ${custom_dir_extendion}')
     
     # Process the sizes of the files
     if args.ignore:
@@ -123,8 +149,9 @@ if __name__ == '__main__':
     else:
         if args.debug:
             print(files_list)
-
+        
         for file in files_list:
-            move_files(pathToDir, file, min_size, max_size)
-
+            flag = move_by_name(pathToDir, file, custom_dir_name)
+            if not flag:
+                move_files(pathToDir, file, min_size, max_size)
 

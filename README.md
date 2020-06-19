@@ -16,17 +16,28 @@ The default config file is in `src/defaults.json`
 If you want to make some modifications will have to follow this format: 
 ```json
 {
-    "ignore": [
-        "file_to_ignore",
-        "iso"
-    ],
-    "customDirs": {
-        "zip": "Compactados",
-        "file_extension": "custom_dir_name"
+    "extension": {
+    	"ignore": [
+            "iso"
+        ],
+        "customDirs": {
+            "zip": "Compactados",
+            "extension": "Dir name"
+    	}
+    },
+    "name": {
+        "ignore": [
+            "a"
+        ],
+        "customDirs": {
+            "BD1C3": "Banco de Dados 1",
+            "name that the file have in the start or in the end": "dirName"
+        }
     }
 }
-```
 
+
+```
 
 ## TO DO
 - [X] Sort files in a given path
@@ -51,13 +62,17 @@ If you want to make some modifications will have to follow this format:
   - [X] Receive the `-I` or `--ignoreDefault` to ignore the default ignored files
 
   - [X] Receive the `-c <type> <dir_name>` or `--custom <type> <dir_name>` to temporaly sorty the determined file type in a custom dir
- 
+
+- [X] Sort by file name
+  - [X] Change the structure of the `src/defaults.json` file to separate extension and name sorting
+  - [ ] Permite select the sorting of a file by it's name
+  - [ ] Permite to ignore a file by it's name
 
 - [ ] REGEX
   - [ ] Receive the `-f <regex>` or `--file <regex>` to process only the files that respect the regex 
   
   - [ ] Store regex as a default custom, so the files that correspond to it will be moved to a custom file
-    * So file like 'HomeWork.txt' can be parsed to the custom dir '~/Documents/University/HomeWork/'
+    *So file like 'HomeWork.txt' can be parsed to the custom dir '~/Documents/University/HomeWork/'
 
 ## BUG FIX
 - [X] Fixing a bug, that ocurs when calling `src/organizer.py` in others dirs because it can't find the `src/defaults.json` file

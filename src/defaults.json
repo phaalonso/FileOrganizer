@@ -1,14 +1,24 @@
 {
-    "ignore": [
-        "iso"
-    ],
-    "customDirs": {
-        "zip": "Compactados",
-        "rar": "Compactados",
-        "xz": "Compactados",
-        "pdf": "Documentos",
-        "odt": "Documentos",
-        "exe": "Executaveis",
-        "txt": "Documentos"
+    "extension": {
+    	"ignore": [
+            "iso"
+        ],
+        "customDirs": {
+            "zip": "Compactados",
+            "rar": "Compactados",
+            "xz": "Compactados",
+            "pdf": "Documentos",
+            "odt": "Documentos",
+            "exe": "Executaveis",
+            "txt": "Documentos"
+    	}
+    },
+    "name": {
+        "ignore": [
+            "a"
+        ],
+        "customDirs": {
+            "BD1C3": "Banco de Dados 1"
+        }
     }
 }
