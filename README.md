@@ -26,9 +26,7 @@ If you want to make some modifications will have to follow this format:
     	}
     },
     "name": {
-        "ignore": [
-            "a"
-        ],
+        "ignore": [],
         "customDirs": {
             "BD1C3": "Banco de Dados 1",
             "name that the file have in the start or in the end": "dirName"
@@ -65,8 +63,8 @@ If you want to make some modifications will have to follow this format:
 
 - [X] Sort by file name
   - [X] Change the structure of the `src/defaults.json` file to separate extension and name sorting
-  - [ ] Permite select the sorting of a file by it's name
-  - [ ] Permite to ignore a file by it's name
+  - [X] Permite select the sorting of a file by it's name
+  - [X] Permite to ignore a file by it's name
 
 - [ ] REGEX
   - [ ] Receive the `-f <regex>` or `--file <regex>` to process only the files that respect the regex 
