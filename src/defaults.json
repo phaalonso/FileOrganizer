@@ -14,9 +14,7 @@
     	}
     },
     "name": {
-        "ignore": [
-            "a"
-        ],
+        "ignore": [ ],
         "customDirs": {
             "BD1C3": "Banco de Dados 1"
         }

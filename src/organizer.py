@@ -21,22 +21,25 @@ def convertByteToMb(size: int):
     size /= 1000 # Get mb
     return size
 
-def move_by_name(path: str, file_name: str, custom_dir: dict):
+def move_by_name(path: str, file_name: str, custom_dir: dict, ignore_name: list):
     '''
         This function will move the file by it's name to a custom dir.
     '''
+    for ign in ignore_name:
+        if ign in file_name:
+            return True
+
     file_path = os.path.join(path, file_name)
     
     if os.path.isdir(file_path):
-        return
+        return False
     
     # For key in dict verify if it's in a file name
     for key in custom_dir.keys():
-        print(key, file_name)
-        if file_name.startswith(key) or file_name.endswith(key):
+        if key in file_name:
             dir_path = os.path.join(path, custom_dir[key])
             # If the dir_path is not a dir then create it
-            if not os.path.isdir(file_path):
+            if not os.path.isdir(dir_path):
                 os.mkdir(dir_path)
             # Move the file to the custom dir
             os.rename(file_path, os.path.join(dir_path, file_name))
@@ -114,6 +117,7 @@ if __name__ == '__main__':
             ignore = data['extension']["ignore"]
             custom_dir_extendion = data['extension']["customDirs"]
             custom_dir_name = data['name']['customDirs']
+            ignore_name = data['name']['ignore']
 
     # When received custom args there will be a list isinstance in args.custom var
     if isinstance(args.custom, list):
@@ -151,7 +155,7 @@ if __name__ == '__main__':
             print(files_list)
         
         for file in files_list:
-            flag = move_by_name(pathToDir, file, custom_dir_name)
+            flag = move_by_name(pathToDir, file, custom_dir_name, ignore_name)
             if not flag:
                 move_files(pathToDir, file, min_size, max_size)
 
